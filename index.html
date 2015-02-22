@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WiFi Latency</title>
+  <meta charset="utf-8">
+  <meta name="description" content="WiFi Latency">
+  <meta name="author" content="K. Pavelock">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>WiFi Latency</h1>
+    <h2>A Shiny App for evaluating a Sensor Network</h2>
+    <p>K. Pavelock<br/>Developing Data Products Coursera Class Project</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>WiFi Latency - Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code> Purpose: &quot;To evaluate WiFi Latency for a sensor network based on several network parameters&quot;  
+</code></pre>
+
+<h3>Network parameters</h3>
+
+<pre><code> - surveillance area
+ - network hub range
+ - wifi throughput
+ - message size
+ - number of major network transactions
+</code></pre>
+
+<h3>Selectable parameters</h3>
+
+<pre><code> - Surveillance area (feet); &quot;slider bar (60 - 5280*2)&quot;       
+ - Network node range (feet); &quot;slider bar (25 - 200)&quot;
+ - WiFi throughput speed (Mbps); &quot;slider bar (30 - 100)&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>WiFi Latency - Notes/Assumptions</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Average building area is 760 feet; Average area for a small city is 2 miles</li>
+<li>WiFi throughput for for 802.11n is 40-50 Mbps. From <a href="http://www.speedguide.net/faq/">http://www.speedguide.net/faq/</a></li>
+<li>Message sizes (kilobytes-KB): small-50KB, medium-500KB, large-5000KB</li>
+<li>Requires 3 sensors per node; Alert Sensor with two Confirming Sensors</li>
+<li><p>Required main Network Messaging Transactions</p>
+
+<ul>
+<li>Sensor discovery initiation via a status request;</li>
+<li>Sensor discovery response via a status message;</li>
+<li>Sensor(s) alert via alert message;</li>
+<li>Detailed detection data request;</li>
+<li>Detailed detection data transmittal;</li>
+<li>Additional detailed detection data request;</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>WiFi Latency - Formula</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Network Processing Time (NP) is measured as Network Delay. </p>
+
+<p>Total Network Processing time $ NP_T $ is the sum of all NPs for each transaction:</p>
+
+<p>\[ NP_T = \sum_{t=1}^n NP_t \]
+$ n $ is the number of main transactions and $ NP_t $ is the network processing time for one major transaction:</p>
+
+<p>\[ NP_t = NL * \left( d_r + d_p + d_c \right) \]
+$ NL $ is the number of nodes (network routers + 1)</p>
+
+<ul>
+<li>Transmission Delay $ d_r $ average message size /Rate (WiFi Speed)</li>
+<li>Propagation Delay $ d_p $ distance/wave propagation speed. WiFi wave propagation speed = speed of light (186,000 miles per second)</li>
+<li>Processing Delay $ d_c $  time for routers to process packet headers.  This is negligible (set to 0)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>WiFi Latency - Outputs</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>A graph (plot) is displayed showing the latency versus number of sensors.  Calculated values are displayed as text labels:  Number of sensors, Surveillance area (Distance), and Latency.  The sample plot below is a replica from the Shiny App with WiFi speed of 45 Mbps and 100 ft hub range.</p>
+
+<ul>
+<li>Try it for yourself.  My WiFi Latency App is deployed at <a href="https://kathpave.shinyapps.io/Shiny/">https://kathpave.shinyapps.io/Shiny/</a>
+<img src="assets/fig/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1"> </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='WiFi Latency - Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='WiFi Latency - Notes/Assumptions'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='WiFi Latency - Formula'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='WiFi Latency - Outputs'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
